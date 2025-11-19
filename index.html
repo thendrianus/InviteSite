@@ -1,20 +1,32 @@
 <!DOCTYPE html>
 <!--
-    SETUP INSTRUCTIONS:
-    
-    To activate the RSVP form, you need to configure a form submission service:
-    
-    1. Go to https://formspree.io and create a free account
-    2. Create a new form and get your unique form ID
-    3. Replace "YOUR_FORM_ID" in line 544 with your actual Formspree form ID
-       Example: action="https://formspree.io/f/xwkagpqr"
-    
-    Alternative options:
-    - Use Google Forms with a script to handle submissions
-    - Set up your own backend API endpoint
-    - Use other form services like Netlify Forms, Basin, etc.
-    
-    The website will work perfectly without form setup, but RSVP submissions won't be saved.
+    This version sends RSVP data to a Google Sheet via Google Apps Script.
+
+    SETUP (Google Apps Script):
+    1. Open the Google Sheet where you want to store data.
+    2. Extensions → Apps Script.
+    3. Use a doPost(e) function that reads JSON and appends to the sheet, for example:
+
+       function doPost(e) {
+         var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("Sheet1");
+         var data = JSON.parse(e.postData.contents);
+         sheet.appendRow([
+           new Date(),              // Timestamp
+           data.name,
+           data.whatsapp,
+           data.church,
+           data.attendance,
+           data.status
+         ]);
+         return ContentService
+           .createTextOutput(JSON.stringify({ result: "success" }))
+           .setMimeType(ContentService.MimeType.JSON);
+       }
+
+    4. Deploy → New deployment → Web app
+       - Execute as: Me
+       - Who has access: Anyone
+    5. Copy the Web App URL and paste it into scriptURL in this file.
 -->
 <html lang="id">
 
@@ -56,8 +68,10 @@
             /* ⬅️ was center */
             justify-content: center;
             background: url('attached_assets/flyer_mob_bg.jpg') center center / cover no-repeat;
-                overflow-x: hidden;        /* only hide sideways overflow */
-    overflow-y: visible;       /* let content extend downward */
+            overflow-x: hidden;
+            /* only hide sideways overflow */
+            overflow-y: visible;
+            /* let content extend downward */
             padding: 40px 20px 60px;
             /* extra bottom padding so it’s not too close to edge */
         }
@@ -690,7 +704,8 @@
 
             <div id="formMessage" class="form-message hidden"></div>
 
-            <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST" id="rsvpForm">
+            <!-- ❗ Action removed – submission handled via JavaScript to Google Apps Script -->
+            <form method="POST" id="rsvpForm">
                 <div class="form-group">
                     <label class="form-label" for="name">Nama Lengkap</label>
                     <input type="text" id="name" name="name" class="form-input" required
@@ -737,7 +752,6 @@
                         </label>
                     </div>
                 </div>
-
 
                 <button type="submit" class="submit-button">Kirim Konfirmasi</button>
             </form>
@@ -822,7 +836,6 @@
             }
         }
 
-
         const bgMusic = document.getElementById('bgMusic');
         const musicControl = document.getElementById('musicControl');
         let isPlaying = false;
@@ -867,11 +880,13 @@
         const rsvpForm = document.getElementById('rsvpForm');
         const formMessage = document.getElementById('formMessage');
 
+        // 🔗 Your Google Apps Script Web App URL
+        const scriptURL = "https://script.google.com/macros/s/AKfycbxjEVL5jperPvcYSSciSbpLO_cWYok4IaYQfL1Cd7KdQ4tP9oz2ARYuCB0ur7UBgdCUMw/exec";
+
         rsvpForm.addEventListener('submit', async function (e) {
             e.preventDefault();
 
             const status = document.querySelector('input[name="status"]:checked')?.value;
-
             const attendance = document.getElementById('attendance').value;
 
             if (status === 'Tidak hadir' && attendance > 0) {
@@ -884,22 +899,29 @@
             submitButton.textContent = 'Mengirim...';
             submitButton.disabled = true;
 
+            // Build JSON payload to send to Google Apps Script
+            const payload = {
+                name: document.getElementById('name').value.trim(),
+                whatsapp: document.getElementById('whatsapp').value.trim(),
+                church: document.getElementById('church').value.trim(),
+                attendance: attendance,
+                status: status
+            };
+
             try {
-                const formData = new FormData(rsvpForm);
-                const response = await fetch(rsvpForm.action, {
+                // Using no-cors so the request goes through even if CORS headers are not set
+                await fetch(scriptURL, {
                     method: 'POST',
-                    body: formData,
+                    mode: 'no-cors',
                     headers: {
-                        'Accept': 'application/json'
-                    }
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(payload)
                 });
 
-                if (response.ok) {
-                    showMessage('Terima kasih! Konfirmasi kehadiran Anda telah diterima.', 'success');
-                    rsvpForm.reset();
-                } else {
-                    throw new Error('Form submission failed');
-                }
+                // If we reach here, assume success
+                showMessage('Terima kasih! Konfirmasi kehadiran Anda telah diterima.', 'success');
+                rsvpForm.reset();
             } catch (error) {
                 showMessage('Maaf, terjadi kesalahan. Silakan coba lagi atau hubungi kami via WhatsApp.', 'error');
             } finally {
