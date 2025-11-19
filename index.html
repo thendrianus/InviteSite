@@ -51,9 +51,21 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: linear-gradient(135deg, #0a1628 0%, #1a2642 50%, #0f1e3a 100%);
+            background: linear-gradient(135deg, rgba(10, 22, 40, 0.7) 0%, rgba(26, 38, 66, 0.7) 50%, rgba(15, 30, 58, 0.7) 100%), 
+                        url('attached_assets/Background Malaikat Maria_1763521733968.jpg') center center / cover no-repeat;
             overflow: hidden;
             padding: 40px 20px;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(10, 22, 40, 0.3);
+            pointer-events: none;
         }
         
         .stars {
@@ -198,6 +210,17 @@
             background: #f9f7f4;
             color: #333;
             text-align: center;
+            position: relative;
+        }
+        
+        .decorative-image {
+            max-width: 300px;
+            width: 100%;
+            height: auto;
+            margin: 0 auto 40px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            opacity: 0.95;
         }
         
         .container {
@@ -511,6 +534,10 @@
     
     <section class="section greeting-section">
         <div class="container">
+            <img src="attached_assets/Malaikat Maria_1763521733967.png" 
+                 alt="Angel and Mary" 
+                 class="decorative-image">
+            
             <h2 class="section-title">Shalom</h2>
             <p class="greeting-text">
                 Dengan sukacita dan penuh rasa syukur, kami mengundang Bapak/Ibu/Saudara/i 
