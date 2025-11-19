@@ -100,6 +100,9 @@ All 4 parameter cases handled correctly as specified.
 - Created comprehensive documentation (README.md)
 - Added setup instructions in HTML comments
 - Created .gitignore for Python/Replit environment
+- **Integrated actual artwork:** Used "Background Malaikat Maria" image as hero background with angel and Mary painting
+- **Added decorative element:** Placed angel/Mary painting in greeting section for enhanced visual appeal
+- **Enhanced design:** Combined real starry background image with CSS-generated stars for depth
 
 ## Next Steps for Production
 
