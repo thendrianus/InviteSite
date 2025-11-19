@@ -1,0 +1,232 @@
+You are an expert frontend developer and UI/UX designer.
+Create a **single-page invitation website** (`index.html` only) for a **Christmas event**, designed in the elegant style of a **wedding invitation**.
+
+The website must be:
+
+* **Elegant**
+* **Simple**
+* **Center-oriented**
+* **Mobile-first, extremely responsive**
+* **Wedding invitation style**
+* **Inspired heavily by the brochure design**
+* With **starry night background like the brochure**
+* Only one file: `index.html`
+* Using HTML + inline CSS + minimal vanilla JavaScript
+* No external frameworks (Bootstrap, Tailwind, etc.)
+
+---
+
+# 1. **Design & Style Requirements**
+
+### Visual Style:
+
+* Use a **starry night background** similar to the brochure:
+
+  * Either using a provided image (if available), *or*
+  * Using CSS stars effect (white/gold small glowing dots) blended with a **midnight blue** gradient background.
+* Colors:
+
+  * **Midnight blue / dark navy** as main color.
+  * **Gold** accents for borders, headings, and buttons.
+  * **White / off-white** for text.
+* Typography:
+
+  * Title “Tidak Ada yang Mustahil” → **cursive/script font** (wedding style).
+  * Other text → **clean sans-serif**.
+* Center-oriented layout:
+
+  * All major sections centered.
+  * Max-width container of **600–700px** centered on desktop.
+
+### Mobile:
+
+* Designed primarily for **mobile screens**.
+* Perfect spacing, readable fonts, large touch targets.
+
+### Starry Background Requirement:
+
+* The hero section (top) must feature:
+
+  * A **starry night effect**, either:
+
+    * A high-quality starry sky background image, or
+    * CSS-rendered stars (tiny lights randomly placed).
+* Starry effect should be subtle, elegant, NOT distracting.
+* Full-screen hero height with stars visible clearly.
+
+---
+
+# 2. **Page Structure (4 Main Sections, Centered)**
+
+## **A. Hero / Cover (Full Height, Starry Background)**
+
+* Background:
+
+  * Midnight blue gradient + starry effect overlay (image or CSS stars).
+* Center all content vertically and horizontally.
+* Content:
+
+  * Small heading: **NATAL BATAM 2025**
+  * Large cursive heading: **Tidak Ada yang Mustahil**
+  * Subtitle: **Ibadah Natal Batam**
+  * Personalized greeting block (dynamic):
+
+    ```
+    Kepada Yth.
+    Bapak/Ibu/Sdr/i <Guest Name>
+    ```
+  * Optional sender block:
+
+    ```
+    Undangan ini dikirim oleh:
+    <Sender Name>
+    ```
+  * Smooth scroll button: **Konfirmasi Kehadiran**
+
+---
+
+## **B. Greeting / Intro**
+
+* Centered, clean, white/light background.
+* Short paragraphs:
+
+  * Shalom
+  * Invitation message
+  * Theme line
+
+---
+
+## **C. Details Section**
+
+* Centered card with thin gold border.
+* Info:
+
+  * Pembicara: Pdt. Eko Aria, M.Th.
+  * Tanggal: Sabtu, 6 Desember 2025
+  * Waktu: Pk. 18.30 WIB
+  * Tempat: Batam Reformed Centre, Jl. Reformasi No. 3, Batam Center
+  * WA: 0811-7007-0800
+* Button: **Lihat Lokasi di Google Maps**
+* Optional images (centered):
+
+  * Church photo
+  * Speaker photo (circular)
+
+---
+
+## **D. RSVP Form**
+
+* Centered, mobile-friendly.
+* Fields:
+
+  * Nama lengkap (prefilled if `to` exists)
+  * Nomor WhatsApp
+  * Gereja/Jemaat (optional)
+  * Jumlah hadir
+  * Status: Hadir / Belum pasti / Tidak hadir
+* Gold button “Kirim Konfirmasi”
+* Use Formspree action placeholder (easy to replace)
+
+---
+
+# 3. **Background Christmas Music**
+
+* Add `<audio>` element with Christmas music.
+* No autoplay (mobile restriction).
+* Add a **floating play/pause button** in bottom right:
+
+  * Small, elegant, circular.
+  * Controls the audio loop.
+  * Volume around 0.3.
+
+---
+
+# 4. **Dynamic Personalization (URL Parameters)**
+
+Use URL parameters:
+
+```
+?to=Guest+Name&from=Sender+Name
+```
+
+### Behavior:
+
+### Case A — `to` AND `from` exist:
+
+```
+Kepada Yth.
+Bapak/Ibu/Sdr/i <Guest Name>
+
+Undangan ini dikirim oleh:
+<Sender Name>
+```
+
+### Case B — only `to` exists:
+
+```
+Kepada Yth.
+Bapak/Ibu/Sdr/i <Guest Name>
+```
+
+(Hide sender block.)
+
+### Case C — only `from` exists:
+
+```
+Kepada Yth.
+Saudara/i terkasih
+
+Undangan ini dikirim oleh:
+<Sender Name>
+```
+
+### Case D — neither exists:
+
+Default greeting:
+
+```
+Kepada Yth.
+Saudara/i terkasih
+```
+
+(Hide sender block.)
+
+PLUS:
+
+* If `to` exists → autofill RSVP name field.
+
+---
+
+# 5. **Animations & UX**
+
+* Soft fade-in on each section.
+* Smooth scroll.
+* Buttons with gentle scale + shadow on hover.
+* Starry background may include:
+
+  * CSS star twinkle (very subtle, optional)
+  * OR static stars (must look elegant).
+
+---
+
+# 6. **Technical Implementation Requirements**
+
+* All in **one file**: `index.html`
+* Use inline `<style>` for CSS and `<script>` at bottom.
+* No external JS/CSS libraries.
+* Use Google Fonts only.
+
+---
+
+# 7. **Output**
+
+Produce a complete, production-ready `index.html` implementing:
+
+* Starry night background (CSS or image)
+* Elegant wedding-inspired layout
+* Mobile-first responsive design
+* Personalized greeting based on URL params
+* Audio background music with play/pause button
+* RSVP form
+* Smooth animations
+* Centered content
