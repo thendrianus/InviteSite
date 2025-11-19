@@ -103,6 +103,7 @@ All 4 parameter cases handled correctly as specified.
 - **Integrated actual artwork:** Used "Background Malaikat Maria" image as hero background with angel and Mary painting
 - **Added decorative element:** Placed angel/Mary painting in greeting section for enhanced visual appeal
 - **Enhanced design:** Combined real starry background image with CSS-generated stars for depth
+- **Added venue photos:** Integrated church exterior and interior images in details section to showcase the beautiful venue
 
 ## Next Steps for Production
 
