@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<!--
+    SETUP INSTRUCTIONS:
+    
+    To activate the RSVP form, you need to configure a form submission service:
+    
+    1. Go to https://formspree.io and create a free account
+    2. Create a new form and get your unique form ID
+    3. Replace "YOUR_FORM_ID" in line 544 with your actual Formspree form ID
+       Example: action="https://formspree.io/f/xwkagpqr"
+    
+    Alternative options:
+    - Use Google Forms with a script to handle submissions
+    - Set up your own backend API endpoint
+    - Use other form services like Netlify Forms, Basin, etc.
+    
+    The website will work perfectly without form setup, but RSVP submissions won't be saved.
+-->
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Undangan Natal Batam 2025 - Tidak Ada yang Mustahil">
+    <title>Natal Batam 2025 - Tidak Ada yang Mustahil</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:wght@300;400;500&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: #f5f5f5;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+        
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #0a1628 0%, #1a2642 50%, #0f1e3a 100%);
+            overflow: hidden;
+            padding: 40px 20px;
+        }
+        
+        .stars {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+        
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 3s infinite ease-in-out;
+        }
+        
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            max-width: 600px;
+            animation: fadeIn 1.5s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .hero-subtitle {
+            font-size: 0.9rem;
+            letter-spacing: 3px;
+            color: #d4af37;
+            margin-bottom: 20px;
+            font-weight: 300;
+            text-transform: uppercase;
+        }
+        
+        .hero-title {
+            font-family: 'Great Vibes', cursive;
+            font-size: 3.5rem;
+            color: #d4af37;
+            margin-bottom: 15px;
+            line-height: 1.2;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .hero-event {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.2rem;
+            color: #f5f5f5;
+            margin-bottom: 40px;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+        
+        .greeting-box {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            padding: 30px;
+            margin: 30px 0;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .greeting-label {
+            font-size: 0.9rem;
+            color: #d4af37;
+            margin-bottom: 10px;
+            font-weight: 300;
+        }
+        
+        .guest-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            color: #fff;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+        
+        .sender-info {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(212, 175, 55, 0.2);
+        }
+        
+        .sender-label {
+            font-size: 0.85rem;
+            color: #d4af37;
+            margin-bottom: 8px;
+            font-weight: 300;
+        }
+        
+        .sender-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.2rem;
+            color: #fff;
+            font-weight: 400;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            padding: 15px 40px;
+            background: linear-gradient(135deg, #d4af37 0%, #b8941f 100%);
+            color: #0a1628;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.5);
+        }
+        
+        .section {
+            padding: 80px 20px;
+            animation: fadeInSection 1s ease-in;
+        }
+        
+        @keyframes fadeInSection {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .greeting-section {
+            background: #f9f7f4;
+            color: #333;
+            text-align: center;
+        }
+        
+        .container {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.2rem;
+            color: #0a1628;
+            margin-bottom: 30px;
+            font-weight: 500;
+        }
+        
+        .greeting-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 20px;
+        }
+        
+        .greeting-text strong {
+            color: #d4af37;
+            font-weight: 500;
+        }
+        
+        .details-section {
+            background: linear-gradient(135deg, #0a1628 0%, #1a2642 100%);
+            color: #f5f5f5;
+            text-align: center;
+        }
+        
+        .details-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 2px solid #d4af37;
+            border-radius: 15px;
+            padding: 50px 30px;
+            max-width: 600px;
+            margin: 0 auto;
+            backdrop-filter: blur(10px);
+        }
+        
+        .detail-item {
+            margin-bottom: 30px;
+        }
+        
+        .detail-label {
+            font-size: 0.9rem;
+            color: #d4af37;
+            margin-bottom: 8px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        
+        .detail-value {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.4rem;
+            color: #fff;
+            font-weight: 400;
+        }
+        
+        .detail-value.large {
+            font-size: 1.8rem;
+            font-weight: 500;
+        }
+        
+        .contact-info {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+            font-size: 1.1rem;
+        }
+        
+        .whatsapp-icon {
+            color: #25D366;
+            font-size: 1.3rem;
+        }
+        
+        .map-button {
+            display: inline-block;
+            padding: 12px 30px;
+            background: transparent;
+            color: #d4af37;
+            text-decoration: none;
+            border: 2px solid #d4af37;
+            border-radius: 50px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            margin-top: 30px;
+            font-size: 0.95rem;
+        }
+        
+        .map-button:hover {
+            background: #d4af37;
+            color: #0a1628;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+        }
+        
+        .rsvp-section {
+            background: #f9f7f4;
+            color: #333;
+            text-align: center;
+        }
+        
+        .rsvp-section .section-title {
+            color: #0a1628;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+            text-align: left;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            color: #0a1628;
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+        
+        .form-label .optional {
+            color: #999;
+            font-weight: 300;
+            font-size: 0.85rem;
+        }
+        
+        .form-input,
+        .form-select {
+            width: 100%;
+            padding: 14px 18px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: 'Montserrat', sans-serif;
+            transition: all 0.3s ease;
+            background: #fff;
+        }
+        
+        .form-input:focus,
+        .form-select:focus {
+            outline: none;
+            border-color: #d4af37;
+            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+        }
+        
+        .submit-button {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #d4af37 0%, #b8941f 100%);
+            color: #0a1628;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+        }
+        
+        .submit-button:hover {
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.5);
+        }
+        
+        .music-control {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #d4af37 0%, #b8941f 100%);
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 20px rgba(212, 175, 55, 0.4);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            color: #0a1628;
+            font-size: 1.3rem;
+        }
+        
+        .music-control:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 25px rgba(212, 175, 55, 0.6);
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        .form-message {
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            font-size: 1rem;
+            text-align: center;
+        }
+        
+        .form-message.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .form-message.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 0.8rem;
+                letter-spacing: 2px;
+            }
+            
+            .hero-event {
+                font-size: 1rem;
+            }
+            
+            .greeting-box {
+                padding: 25px 20px;
+            }
+            
+            .guest-name {
+                font-size: 1.3rem;
+            }
+            
+            .section {
+                padding: 60px 20px;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .details-card {
+                padding: 40px 25px;
+            }
+            
+            .detail-value.large {
+                font-size: 1.5rem;
+            }
+            
+            .music-control {
+                width: 50px;
+                height: 50px;
+                bottom: 20px;
+                right: 20px;
+                font-size: 1.1rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+            
+            .greeting-box {
+                padding: 20px 15px;
+            }
+            
+            .cta-button {
+                padding: 12px 30px;
+                font-size: 0.95rem;
+            }
+            
+            .details-card {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section class="hero">
+        <div class="stars" id="stars"></div>
+        
+        <div class="hero-content">
+            <div class="hero-subtitle">NATAL BATAM 2025</div>
+            <h1 class="hero-title">Tidak Ada yang Mustahil</h1>
+            <div class="hero-event">Ibadah Natal Batam</div>
+            
+            <div class="greeting-box">
+                <div class="greeting-label">Kepada Yth.</div>
+                <div class="guest-name" id="guestName">Saudara/i terkasih</div>
+                
+                <div class="sender-info hidden" id="senderBlock">
+                    <div class="sender-label">Undangan ini dikirim oleh:</div>
+                    <div class="sender-name" id="senderName"></div>
+                </div>
+            </div>
+            
+            <a href="#rsvp" class="cta-button">Konfirmasi Kehadiran</a>
+        </div>
+    </section>
+    
+    <section class="section greeting-section">
+        <div class="container">
+            <h2 class="section-title">Shalom</h2>
+            <p class="greeting-text">
+                Dengan sukacita dan penuh rasa syukur, kami mengundang Bapak/Ibu/Saudara/i 
+                untuk hadir dalam Perayaan Natal Batam 2025.
+            </p>
+            <p class="greeting-text">
+                Mari bersama-sama merayakan kelahiran Tuhan Yesus Kristus dan merenungkan tema 
+                <strong>"Tidak Ada yang Mustahil"</strong> bagi Allah.
+            </p>
+            <p class="greeting-text">
+                Kehadiran Anda akan melengkapi sukacita perayaan ini.
+            </p>
+        </div>
+    </section>
+    
+    <section class="section details-section">
+        <div class="container">
+            <div class="details-card">
+                <div class="detail-item">
+                    <div class="detail-label">Pembicara</div>
+                    <div class="detail-value large">Pdt. Eko Aria, M.Th.</div>
+                </div>
+                
+                <div class="detail-item">
+                    <div class="detail-label">Tanggal</div>
+                    <div class="detail-value">Sabtu, 6 Desember 2025</div>
+                </div>
+                
+                <div class="detail-item">
+                    <div class="detail-label">Waktu</div>
+                    <div class="detail-value">Pk. 18.30 WIB</div>
+                </div>
+                
+                <div class="detail-item">
+                    <div class="detail-label">Tempat</div>
+                    <div class="detail-value">Batam Reformed Centre</div>
+                    <div class="detail-value" style="font-size: 1.1rem; margin-top: 8px;">
+                        Jl. Reformasi No. 3, Batam Center
+                    </div>
+                </div>
+                
+                <div class="contact-info">
+                    <span class="whatsapp-icon">📱</span>
+                    <span>0811-7007-0800</span>
+                </div>
+                
+                <a href="https://maps.google.com/?q=Batam+Reformed+Centre+Jl.+Reformasi+No.+3+Batam+Center" 
+                   target="_blank" 
+                   class="map-button">
+                    📍 Lihat Lokasi di Google Maps
+                </a>
+            </div>
+        </div>
+    </section>
+    
+    <section class="section rsvp-section" id="rsvp">
+        <div class="container">
+            <h2 class="section-title">Konfirmasi Kehadiran</h2>
+            <p class="greeting-text" style="margin-bottom: 40px;">
+                Mohon konfirmasi kehadiran Anda melalui formulir di bawah ini
+            </p>
+            
+            <div id="formMessage" class="form-message hidden"></div>
+            
+            <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST" id="rsvpForm">
+                <div class="form-group">
+                    <label class="form-label" for="name">Nama Lengkap</label>
+                    <input type="text" 
+                           id="name" 
+                           name="name" 
+                           class="form-input" 
+                           required 
+                           placeholder="Masukkan nama lengkap">
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="whatsapp">Nomor WhatsApp</label>
+                    <input type="tel" 
+                           id="whatsapp" 
+                           name="whatsapp" 
+                           class="form-input" 
+                           required 
+                           placeholder="Contoh: 08123456789">
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="church">
+                        Gereja/Jemaat <span class="optional">(opsional)</span>
+                    </label>
+                    <input type="text" 
+                           id="church" 
+                           name="church" 
+                           class="form-input" 
+                           placeholder="Nama gereja/jemaat Anda">
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="attendance">Jumlah yang Hadir</label>
+                    <input type="number" 
+                           id="attendance" 
+                           name="attendance" 
+                           class="form-input" 
+                           min="0" 
+                           max="10" 
+                           required 
+                           placeholder="Jumlah orang">
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="status">Status Kehadiran</label>
+                    <select id="status" name="status" class="form-select" required>
+                        <option value="">Pilih status</option>
+                        <option value="Hadir">Hadir</option>
+                        <option value="Belum pasti">Belum pasti</option>
+                        <option value="Tidak hadir">Tidak hadir</option>
+                    </select>
+                </div>
+                
+                <button type="submit" class="submit-button">Kirim Konfirmasi</button>
+            </form>
+        </div>
+    </section>
+    
+    <audio id="bgMusic" loop>
+        <source src="https://www.bensound.com/bensound-music/bensound-christmastime.mp3" type="audio/mpeg">
+    </audio>
+    
+    <button class="music-control" id="musicControl" title="Putar/Pause Musik">
+        ▶️
+    </button>
+    
+    <script>
+        function createStars() {
+            const starsContainer = document.getElementById('stars');
+            const starCount = 150;
+            
+            for (let i = 0; i < starCount; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.animationDelay = Math.random() * 3 + 's';
+                
+                if (Math.random() > 0.8) {
+                    star.style.background = '#d4af37';
+                }
+                
+                if (Math.random() > 0.7) {
+                    star.style.width = '3px';
+                    star.style.height = '3px';
+                }
+                
+                starsContainer.appendChild(star);
+            }
+        }
+        
+        function getUrlParameter(name) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(name);
+        }
+        
+        function personalizeGreeting() {
+            const toParam = getUrlParameter('to');
+            const fromParam = getUrlParameter('from');
+            const guestNameEl = document.getElementById('guestName');
+            const senderBlock = document.getElementById('senderBlock');
+            const senderNameEl = document.getElementById('senderName');
+            const nameInput = document.getElementById('name');
+            
+            if (toParam && fromParam) {
+                guestNameEl.textContent = 'Bapak/Ibu/Sdr/i ' + decodeURIComponent(toParam);
+                senderNameEl.textContent = decodeURIComponent(fromParam);
+                senderBlock.classList.remove('hidden');
+                nameInput.value = decodeURIComponent(toParam);
+            } else if (toParam) {
+                guestNameEl.textContent = 'Bapak/Ibu/Sdr/i ' + decodeURIComponent(toParam);
+                senderBlock.classList.add('hidden');
+                nameInput.value = decodeURIComponent(toParam);
+            } else if (fromParam) {
+                guestNameEl.textContent = 'Saudara/i terkasih';
+                senderNameEl.textContent = decodeURIComponent(fromParam);
+                senderBlock.classList.remove('hidden');
+            } else {
+                guestNameEl.textContent = 'Saudara/i terkasih';
+                senderBlock.classList.add('hidden');
+            }
+        }
+        
+        const bgMusic = document.getElementById('bgMusic');
+        const musicControl = document.getElementById('musicControl');
+        let isPlaying = false;
+        
+        bgMusic.volume = 0.3;
+        
+        musicControl.addEventListener('click', function() {
+            if (isPlaying) {
+                bgMusic.pause();
+                musicControl.innerHTML = '▶️';
+                isPlaying = false;
+            } else {
+                bgMusic.play();
+                musicControl.innerHTML = '⏸️';
+                isPlaying = true;
+            }
+        });
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            createStars();
+            personalizeGreeting();
+            
+            const sections = document.querySelectorAll('.section');
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -100px 0px'
+            };
+            
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                    }
+                });
+            }, observerOptions);
+            
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+        });
+        
+        const rsvpForm = document.getElementById('rsvpForm');
+        const formMessage = document.getElementById('formMessage');
+        
+        rsvpForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const status = document.getElementById('status').value;
+            const attendance = document.getElementById('attendance').value;
+            
+            if (status === 'Tidak hadir' && attendance > 0) {
+                showMessage('Jika status kehadiran "Tidak hadir", jumlah yang hadir harus 0', 'error');
+                return false;
+            }
+            
+            const submitButton = rsvpForm.querySelector('.submit-button');
+            const originalText = submitButton.textContent;
+            submitButton.textContent = 'Mengirim...';
+            submitButton.disabled = true;
+            
+            try {
+                const formData = new FormData(rsvpForm);
+                const response = await fetch(rsvpForm.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+                
+                if (response.ok) {
+                    showMessage('Terima kasih! Konfirmasi kehadiran Anda telah diterima.', 'success');
+                    rsvpForm.reset();
+                } else {
+                    throw new Error('Form submission failed');
+                }
+            } catch (error) {
+                showMessage('Maaf, terjadi kesalahan. Silakan coba lagi atau hubungi kami via WhatsApp.', 'error');
+            } finally {
+                submitButton.textContent = originalText;
+                submitButton.disabled = false;
+            }
+        });
+        
+        function showMessage(message, type) {
+            formMessage.textContent = message;
+            formMessage.className = 'form-message ' + type;
+            formMessage.classList.remove('hidden');
+            formMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            
+            if (type === 'success') {
+                setTimeout(() => {
+                    formMessage.classList.add('hidden');
+                }, 5000);
+            }
+        }
+    </script>
+</body>
+</html>
