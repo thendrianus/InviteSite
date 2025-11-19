@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,7 +8,9 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:wght@300;400;500&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:wght@300;400;500&family=Montserrat:wght@300;400;500&display=swap"
+        rel="stylesheet">
 
     <style>
         * {
@@ -37,7 +40,7 @@
             background: rgba(5, 9, 18, 0.9);
             border-radius: 16px;
             border: 1px solid rgba(212, 175, 55, 0.4);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
             padding: 25px 18px 30px;
             backdrop-filter: blur(12px);
         }
@@ -149,7 +152,8 @@
 
         .form-textarea {
             resize: vertical;
-            min-height: 90px;
+            min-height: 200px;
+            line-height: 1.5;
         }
 
         .radio-group {
@@ -312,6 +316,7 @@
         }
     </style>
 </head>
+
 <body>
     <div class="page-wrapper">
         <header class="page-header">
@@ -319,8 +324,8 @@
             <div class="page-subtitle">Generator Link Undangan</div>
             <div class="badge">Untuk jemaat yang ingin mengirim undangan</div>
             <p class="page-desc">
-                Halaman ini membantu Anda membuat link undangan dan teks WhatsApp 
-                secara otomatis. Cukup isi nama yang diundang dan nama Anda, lalu 
+                Halaman ini membantu Anda membuat link undangan dan teks WhatsApp
+                secara otomatis. Cukup isi nama yang diundang dan nama Anda, lalu
                 kirim lewat WhatsApp.
             </p>
         </header>
@@ -352,18 +357,22 @@
                         <input type="radio" name="titleOption" value="Pdt.">
                         <span>Pdt.</span>
                     </label>
+                    <!-- tambahan sapaan -->
+                    <label class="radio-pill">
+                        <input type="radio" name="titleOption" value="Bro">
+                        <span>Bro</span>
+                    </label>
+                    <label class="radio-pill">
+                        <input type="radio" name="titleOption" value="Sis">
+                        <span>Sis</span>
+                    </label>
                     <label class="radio-pill">
                         <input type="radio" name="titleOption" value="custom">
                         <span>Lainnya</span>
                     </label>
                 </div>
-                <input 
-                    type="text" 
-                    id="customTitle" 
-                    class="form-input" 
-                    placeholder="Contoh: Bpk. Guru, Om, Tante, dsb." 
-                    style="margin-top: 8px; display: none;"
-                >
+                <input type="text" id="customTitle" class="form-input" placeholder="Contoh: Bpk. Guru, Om, Tante, dsb."
+                    style="margin-top: 8px; display: none;">
                 <div class="small-hint">
                     Sapaan ini akan muncul seperti: <strong>Bapak. Yohanes</strong> atau <strong>Pdt. Eko Aria</strong>.
                 </div>
@@ -372,12 +381,7 @@
             <div class="two-columns">
                 <div class="form-group">
                     <label class="form-label">Nama yang Diundang</label>
-                    <input 
-                        type="text" 
-                        id="guestName" 
-                        class="form-input" 
-                        placeholder="Contoh: Yohanes Wijaya"
-                    >
+                    <input type="text" id="guestName" class="form-input" placeholder="Contoh: Yohanes Wijaya">
                     <div class="small-hint">
                         Nama ini akan tampil di halaman undangan dan di teks WhatsApp.
                     </div>
@@ -387,12 +391,7 @@
                     <label class="form-label">
                         Nama Pengirim <small>(disimpan otomatis)</small>
                     </label>
-                    <input 
-                        type="text" 
-                        id="senderName" 
-                        class="form-input" 
-                        placeholder="Contoh: Andreas"
-                    >
+                    <input type="text" id="senderName" class="form-input" placeholder="Contoh: Andreas">
                     <div class="small-hint">
                         Nama ini akan disimpan di HP Anda, jadi tidak perlu ketik ulang.
                     </div>
@@ -403,11 +402,7 @@
                 Mohon lengkapi <strong>Nama yang Diundang</strong> dan <strong>Nama Pengirim</strong> terlebih dahulu.
             </div>
 
-            <div class="buttons-row">
-                <button class="btn btn-primary" id="generateBtn">
-                    ✨ Buat Link & Teks
-                </button>
-            </div>
+
         </section>
 
         <!-- OUTPUT -->
@@ -429,14 +424,36 @@
                 </div>
             </div>
 
+            <!-- Gaya Teks WA -->
+            <div class="form-group">
+                <label class="form-label">Gaya Teks WhatsApp</label>
+                <div class="radio-group" id="styleOptions">
+                    <label class="radio-pill active">
+                        <input type="radio" name="styleOption" value="formal" checked>
+                        <span>Formal</span>
+                    </label>
+                    <label class="radio-pill">
+                        <input type="radio" name="styleOption" value="semi">
+                        <span>Semi-Formal</span>
+                    </label>
+                    <label class="radio-pill">
+                        <input type="radio" name="styleOption" value="santai">
+                        <span>Santai</span>
+                    </label>
+                    <label class="radio-pill">
+                        <input type="radio" name="styleOption" value="short">
+                        <span>Singkat</span>
+                    </label>
+                </div>
+                <div class="small-hint">
+                    Pilih apakah teks undangan ingin lebih resmi, agak santai, atau sangat singkat.
+                </div>
+            </div>
+
             <div class="form-group">
                 <div class="label-small">Teks WhatsApp</div>
-                <textarea 
-                    id="waMessage" 
-                    class="form-textarea" 
-                    readonly
-                    placeholder="Teks WhatsApp akan muncul di sini setelah Anda membuat undangan."
-                ></textarea>
+                <textarea id="waMessage" class="form-textarea" readonly
+                    placeholder="Teks WhatsApp akan muncul di sini setelah Anda membuat undangan."></textarea>
                 <div class="message-note">
                     Teks ini bisa Anda salin lalu tempel di WhatsApp, atau langsung kirim dengan tombol di bawah.
                 </div>
@@ -444,15 +461,20 @@
                     <button class="btn btn-secondary" id="copyMessageBtn" disabled>
                         📋 Salin Teks
                     </button>
-                    <button class="btn btn-primary" id="sendWhatsAppBtn" disabled:
+                    <button class="btn btn-primary" id="sendWhatsAppBtn" disabled>
                         📲 Kirim via WhatsApp
                     </button>
                 </div>
             </div>
+            <div class="buttons-row">
+                <button class="btn btn-secondary" id="newInviteBtn">
+                    🔄 Buat undangan baru
+                </button>
+            </div>
         </section>
 
         <div class="footer-note">
-            Link undangan akan mengarahkan ke <a href="https://natalbatam.com" target="_blank">natalbatam.com</a> 
+            Link undangan akan mengarahkan ke <a href="https://natalbatam.com" target="_blank">natalbatam.com</a>
             dengan nama tamu dan pengirim yang sudah dipersonalisasi.
         </div>
     </div>
@@ -461,11 +483,15 @@
         // ====== KONFIGURASI DASAR ======
         const BASE_URL = "https://natalbatam.com";
 
+        const LS_SENDER_NAME = "senderName";
+        const LS_TITLE_OPTION = "titleOption";
+        const LS_CUSTOM_TITLE = "customTitle";
+        const LS_STYLE_OPTION = "styleOption";
+
         const titleOptionsEl = document.getElementById("titleOptions");
         const customTitleEl = document.getElementById("customTitle");
         const guestNameEl = document.getElementById("guestName");
         const senderNameEl = document.getElementById("senderName");
-        const generateBtn = document.getElementById("generateBtn");
         const inviteLinkEl = document.getElementById("inviteLink");
         const waMessageEl = document.getElementById("waMessage");
         const copyLinkBtn = document.getElementById("copyLinkBtn");
@@ -473,23 +499,133 @@
         const sendWhatsAppBtn = document.getElementById("sendWhatsAppBtn");
         const openLinkBtn = document.getElementById("openLinkBtn");
         const validationAlert = document.getElementById("validationAlert");
+        const styleOptionsEl = document.getElementById("styleOptions");
+        const newInviteBtn = document.getElementById("newInviteBtn");
 
-        // ====== LOCAL STORAGE: NAMA PENGIRIM ======
+        const DEFAULT_LINK_TEXT = "Link akan muncul di sini setelah Anda membuat undangan.";
+
+        // Blok informasi acara (tetap sama untuk semua gaya)
+        const EVENT_BLOCK = [
+            "UNDANGAN",
+            "",
+            "NATAL BATAM 2025",
+            "Tidak ada yang Mustahil",
+            "Pdt. Eko Aria, M.Th.",
+            "",
+            "Sabtu, 6 Des 2025",
+            "Pk. 18.30 WIB",
+            "Di Batam Reformed Centre (BRC)",
+            "Jl. Reformasi No. 3 Batam Center",
+            "",
+            "Pendaftaran:",
+            "https://linktr.ee/EventReformedBatam",
+            "",
+            "Gratis!",
+            "",
+            "Info: 0811-7007-0800 (WA)"
+        ].join("\n");
+
+        // ====== LOCAL STORAGE & RESTORE ======
         document.addEventListener("DOMContentLoaded", function () {
-            const savedSender = localStorage.getItem("senderName");
+            // Restore sender
+            const savedSender = localStorage.getItem(LS_SENDER_NAME);
             if (savedSender) {
                 senderNameEl.value = savedSender;
             }
 
+            // Restore title
+            const savedTitle = localStorage.getItem(LS_TITLE_OPTION);
+            const savedCustomTitle = localStorage.getItem(LS_CUSTOM_TITLE);
+            const titleRadios = titleOptionsEl.querySelectorAll("input[name='titleOption']");
+            let titleMatched = false;
+
+            titleRadios.forEach(radio => {
+                if (savedTitle && radio.value === savedTitle) {
+                    radio.checked = true;
+                    titleMatched = true;
+                }
+            });
+
+            if (!titleMatched) {
+                // default Bapak
+                titleRadios.forEach(radio => {
+                    if (radio.value === "Bapak") {
+                        radio.checked = true;
+                    }
+                });
+            }
+
+            // set active class & custom field state
+            updateTitleUI();
+
+            if (savedCustomTitle) {
+                customTitleEl.value = savedCustomTitle;
+            }
+
+            // Restore style
+            const savedStyle = localStorage.getItem(LS_STYLE_OPTION);
+            const styleRadios = styleOptionsEl.querySelectorAll("input[name='styleOption']");
+            let styleMatched = false;
+
+            styleRadios.forEach(radio => {
+                if (savedStyle && radio.value === savedStyle) {
+                    radio.checked = true;
+                    styleMatched = true;
+                }
+            });
+
+            if (!styleMatched) {
+                styleRadios.forEach(radio => {
+                    if (radio.value === "formal") {
+                        radio.checked = true;
+                    }
+                });
+            }
+
+            updateStyleUI();
+
+            // Simpan sender ke LS saat diubah
             senderNameEl.addEventListener("input", function () {
                 const val = senderNameEl.value.trim();
                 if (val) {
-                    localStorage.setItem("senderName", val);
+                    localStorage.setItem(LS_SENDER_NAME, val);
                 } else {
-                    localStorage.removeItem("senderName");
+                    localStorage.removeItem(LS_SENDER_NAME);
                 }
             });
+
+            // Initial generate (kalau data sudah lengkap)
+            updateInvite();
         });
+
+        // ====== HELPER UI ======
+        function updateTitleUI() {
+            const pills = titleOptionsEl.querySelectorAll(".radio-pill");
+            pills.forEach(p => p.classList.remove("active"));
+
+            const checked = titleOptionsEl.querySelector("input[name='titleOption']:checked");
+            if (checked) {
+                const label = checked.closest(".radio-pill");
+                if (label) label.classList.add("active");
+
+                if (checked.value === "custom") {
+                    customTitleEl.style.display = "block";
+                } else {
+                    customTitleEl.style.display = "none";
+                }
+            }
+        }
+
+        function updateStyleUI() {
+            const pills = styleOptionsEl.querySelectorAll(".radio-pill");
+            pills.forEach(p => p.classList.remove("active"));
+
+            const checked = styleOptionsEl.querySelector("input[name='styleOption']:checked");
+            if (checked) {
+                const label = checked.closest(".radio-pill");
+                if (label) label.classList.add("active");
+            }
+        }
 
         // ====== PILIHAN TITLE (SAPAAN) ======
         function getSelectedTitle() {
@@ -506,41 +642,142 @@
 
         titleOptionsEl.addEventListener("change", function (e) {
             if (e.target.name === "titleOption") {
-                // update UI pill active
-                const pills = titleOptionsEl.querySelectorAll(".radio-pill");
-                pills.forEach(pill => pill.classList.remove("active"));
-                const label = e.target.closest(".radio-pill");
-                if (label) label.classList.add("active");
+                updateTitleUI();
 
-                // toggle custom input
-                if (e.target.value === "custom") {
-                    customTitleEl.style.display = "block";
-                    customTitleEl.focus();
-                } else {
-                    customTitleEl.style.display = "none";
+                // simpan ke localStorage
+                localStorage.setItem(LS_TITLE_OPTION, e.target.value);
+                if (e.target.value !== "custom") {
+                    localStorage.removeItem(LS_CUSTOM_TITLE);
+                    customTitleEl.value = "";
                 }
+
+                updateInvite();
             }
         });
 
-        // ====== GENERATE LINK & TEKS ======
-        function generateInvite() {
+        // custom title input
+        customTitleEl.addEventListener("input", function () {
+            const val = customTitleEl.value.trim();
+            if (val) {
+                localStorage.setItem(LS_CUSTOM_TITLE, val);
+            } else {
+                localStorage.removeItem(LS_CUSTOM_TITLE);
+            }
+            updateInvite();
+        });
+
+        // ====== GAYA TEKS WA (AUTO UPDATE + LOCAL STORAGE) ======
+        styleOptionsEl.addEventListener("change", function (e) {
+            if (e.target.name === "styleOption") {
+                updateStyleUI();
+                localStorage.setItem(LS_STYLE_OPTION, e.target.value);
+                updateInvite();
+            }
+        });
+
+        function buildWAMessage(style, guestName, senderName, titleText, fullUrl) {
+            const headerLine = "💌 [UNDANGAN NATAL BATAM 2025]";
+            const ythLine = `Yth. ${guestName}`;
+
+            if (style === "formal") {
+                return [
+                    headerLine,
+                    ythLine,
+                    "",
+                    "Dalam kasih dan anugerah Tuhan Yesus, kami ingin mengundang Bapak/Ibu/Saudara/i untuk hadir dalam perayaan Natal Batam 2025 berikut ini:",
+                    "",
+                    EVENT_BLOCK,
+                    "",
+                    "Undangan lengkap dapat dilihat pada tautan berikut (dapat juga digunakan untuk menyampaikan konfirmasi kehadiran):",
+                    fullUrl,
+                    "",
+                    "Merupakan sukacita dan kehormatan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir dan memberikan dukungan doa dalam perayaan ini.",
+                    "",
+                    "Hormat kami,",
+                    senderName
+                ].join("\n");
+            }
+
+            if (style === "semi") {
+                return [
+                    headerLine,
+                    ythLine,
+                    "",
+                    "Dengan sukacita saya mengundang Bapak/Ibu/Saudara/i untuk hadir dalam perayaan Natal Batam 2025:",
+                    "",
+                    EVENT_BLOCK,
+                    "",
+                    "Undangan online dapat diakses pada tautan berikut. Di sana juga tersedia pilihan untuk konfirmasi kehadiran bila berkenan:",
+                    fullUrl,
+                    "",
+                    "Kehadiran Bapak/Ibu/Saudara/i akan menjadi sukacita bagi kami.",
+                    "",
+                    "Terima kasih, Tuhan Yesus memberkati.",
+                    senderName
+                ].join("\n");
+            }
+
+            if (style === "santai") {
+                return [
+                    `Halo ${guestName}, 👋`,
+                    "",
+                    `Saya mau mengundang kamu untuk datang ke acara Natal Batam 2025 ya.`,
+                    "Ini detail acaranya:",
+                    "",
+                    EVENT_BLOCK,
+                    "",
+                    "Ini undangan onlinenya, bisa dibuka di sini (kalau mau sekalian konfirmasi hadir juga bisa):",
+                    fullUrl,
+                    "",
+                    "Kalau berkenan dan tidak berhalangan, senang sekali kalau bisa hadir 🙏",
+                    "Terima kasih, Tuhan Yesus memberkati."
+                ].join("\n");
+            }
+
+            if (style === "short") {
+                return [
+                    headerLine,
+                    ythLine,
+                    "",
+                    "Berikut undangan Natal Batam 2025:",
+                    "",
+                    EVENT_BLOCK,
+                    "",
+                    "Halaman undangan & (opsional) konfirmasi kehadiran:",
+                    fullUrl,
+                    "",
+                    "Terima kasih, Tuhan Yesus memberkati 🙏"
+                ].join("\n");
+            }
+
+            return "";
+        }
+
+
+        // ====== GENERATE / UPDATE LINK & TEKS (AUTO) ======
+        function updateInvite() {
             const guestName = guestNameEl.value.trim();
             const senderName = senderNameEl.value.trim();
             let titleText = getSelectedTitle().trim();
 
+            // jika belum lengkap, reset output & disable tombol
             if (!guestName || !senderName) {
-                validationAlert.classList.remove("hidden");
-                return;
-            } else {
                 validationAlert.classList.add("hidden");
+                inviteLinkEl.textContent = DEFAULT_LINK_TEXT;
+                waMessageEl.value = "";
+                copyLinkBtn.disabled = true;
+                copyMessageBtn.disabled = true;
+                sendWhatsAppBtn.disabled = true;
+                openLinkBtn.disabled = true;
+                return;
             }
 
-            // Pastikan title berakhir dengan titik.
+            validationAlert.classList.add("hidden");
+
             if (!titleText.endsWith(".")) {
                 titleText += ".";
             }
 
-            // Bangun URL dengan parameter
             const params = new URLSearchParams();
             params.set("title", titleText.replace(/\s+/g, " ").trim());
             params.set("to", guestName);
@@ -548,33 +785,43 @@
 
             const fullUrl = `${BASE_URL}?${params.toString()}`;
 
-            // Tampilkan link
             inviteLinkEl.textContent = fullUrl;
 
-            // Bangun teks WhatsApp (Bahasa Indonesia)
-            const waLines = [
-                `Shalom ${guestName},`,
-                ``,
-                `Saya ${senderName} ingin mengundang ${titleText} ${guestName} untuk hadir dalam Perayaan Natal Batam 2025 dengan tema "Tidak Ada yang Mustahil".`,
-                ``,
-                `Silakan melihat undangan lengkap di link berikut:`,
-                `${fullUrl}`,
-                ``,
-                `Terima kasih, Tuhan Yesus memberkati.`
-            ];
-
-            const waText = waLines.join("\n");
+            const styleChecked = styleOptionsEl.querySelector("input[name='styleOption']:checked").value;
+            const waText = buildWAMessage(styleChecked, guestName, senderName, titleText, fullUrl);
             waMessageEl.value = waText;
 
-            // Aktifkan tombol-tombol
             copyLinkBtn.disabled = false;
             copyMessageBtn.disabled = false;
             sendWhatsAppBtn.disabled = false;
             openLinkBtn.disabled = false;
         }
 
-        generateBtn.addEventListener("click", function () {
-            generateInvite();
+        // auto-generate ketika data diubah
+        guestNameEl.addEventListener("input", updateInvite);
+        senderNameEl.addEventListener("input", updateInvite);
+
+        // ====== BUTTON BUAT UNDANGAN BARU ======
+        newInviteBtn.addEventListener("click", function (e) {
+            e.preventDefault();
+
+            // reset nama tamu
+            guestNameEl.value = "";
+
+            // reset sapaan ke Bapak
+            const titleRadios = titleOptionsEl.querySelectorAll("input[name='titleOption']");
+            titleRadios.forEach(radio => {
+                radio.checked = (radio.value === "Bapak");
+            });
+            customTitleEl.value = "";
+            customTitleEl.style.display = "none";
+
+            localStorage.setItem(LS_TITLE_OPTION, "Bapak");
+            localStorage.removeItem(LS_CUSTOM_TITLE);
+
+            updateTitleUI();
+            updateInvite();
+            guestNameEl.focus();
         });
 
         // ====== COPY TO CLIPBOARD ======
@@ -584,7 +831,6 @@
                     await navigator.clipboard.writeText(text);
                     alert("Tersalin ke clipboard.");
                 } else {
-                    // fallback
                     const temp = document.createElement("textarea");
                     temp.value = text;
                     document.body.appendChild(temp);
@@ -622,7 +868,7 @@
             window.open(waUrl, "_blank");
         });
 
-        // ====== LIHAT LINK UNDANGAN (OPEN TAB BARU) ======
+        // ====== LIHAT LINK UNDANGAN ======
         openLinkBtn.addEventListener("click", function () {
             const linkText = inviteLinkEl.textContent.trim();
             if (linkText && !linkText.startsWith("Link akan muncul")) {
@@ -631,4 +877,5 @@
         });
     </script>
 </body>
+
 </html>
